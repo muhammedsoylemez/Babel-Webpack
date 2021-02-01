@@ -1,0 +1,37 @@
+Babel - es6 ve sonrası komutlarının es5'e çevirerek bütün tarayıcılarda çalışmasını sağlar
+Ancak babel'i devDependincies olarak indirdiğimiz zaman ;
+Terminalde kullanacağımız sırada "babel" is not recognized as an internal.. şeklinde
+hata verecektir. Çünkü biz babel'i localde kurmuş olduk.
+Terminalde babel komutu kullanırken bunu global'de arayacağı için bulamayacaktır
+Babeli kullanabilmek için bulunduğu yeri göstermemiz gerekiyor yani;
+terminaldeyken ".\node_modules\.bin\babel" şeklinde .. 
+(win ortamında ters slash ile ancak linux ve mac ortamında normal slash ile erişilir)
+
+@babel/core => babel çalışması için
+@babel/polyfill => async await çalışması için
+@babel//preset-env => ES6 dan sonra gelen standartları yüklemek için 
+
+
+
+Nasıl kullanılır ;
+babeljs.io'dan talimatlar takip edilebilir.
+
+npm instal @babel/cli @babel/core @babel/polyfill @babel/preset-env --save-dev
+
+1-) .babelrc config dosyası oluşturun;
+içerisine daha önceden indirdiğimiz paket olan preset'i babeljs.io dan alarak ekleyelim
+{
+    "presets": ["@babel/preset-env"]
+}
+
+2-) src klasörü altında test-1 test-2.js dosyalarını açtık;
+"./node_modules/.bin/babel src -d lib" bu komutu kullanarak src altındaki 
+dosyaları ES5' çevir ve lib adlı klasöre kaydet demiş olduk.
+
+
+3-) tabi komutu sürekli böyle uzun yazmamak için "package.json" dosyamıza
+komut olarak ekleyebilriiz.
+"package.json" içinde;
+"scripts" içine "build": "babel src -d lib" şeklinde eklersek ;
+daha sonra terminalde "npm run build" şeklinde çalıştırabiliriz.
+tabi bunu yapmadan önce daha önce oluşturduğunuz "lib" klasörünü silmeyi unutmayın

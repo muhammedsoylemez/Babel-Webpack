@@ -1,0 +1,35 @@
+Projelerimizde kod yazımlarımızı daha anlaşılabilir olması için ui,storage,app.js
+şeklinde ayırıyorduk. 
+ve tabi html içerisinde tanıtırken sırasını vs çok dikkat etmek zorunda kalıyorduk
+
+Ancak proje büyüdükçe çok fazla js dosyası kullanacağız. 
+ve işte webpack burada bizim birbirine import edilmiş js dosyalarını 
+tek bir dosya halinde (veya istersek birden fazla) toparlıyor ve diğer js dosyalarını
+dependincies şeklinde tanıtıyor.
+yani js dosyalarını alt alta yazalım sırasını karıştırmayalım vs şeylerle
+uğraşmak zorunda kalmıyoruz. 
+
+webpack aynı zamanda projedeki Css dosyalarını vs de birleştirip düzenleyebiliyor.
+
+
+!! webpack ve babel'i birlikte kullanabilmek için babel-loader şeklinde bir modül
+kullanacağız.
+
+webpack için babel kurmak için babel/cli kurmamıza gerek yok çünkü babel ile webpack
+iletişim kurarak kendisi kullanacak.
+
+webpack ->
+npm install webpack-cli webpack --save-dev
+webpack install ettikten sonra app1 app2 ve index js dosyalarımızı oluşturduk.
+app1 ve app2 deki dosyaları export ettik ve index js içinde import ederek kullandık.
+daha sonra "webpack.config.js" oluşturduk ki manifestonu açıklayalım.
+
+tabi yine terminalde doğrudan kullanamayacğız o yüzden "package.json" içinde
+"script" içine "build" : "webpack --watch" ekleyeceğiz.
+!! burada app1 ve indexjs dosyalarımız değişebilir .. bu yüzden webpack her seferinde 
+bunları bundle haline getirebilmesi için "--watch" parametresini ekledik.
+şimdi "npm run build" diyebiliriz
+
+
+artık index.html dosyası oluşturup script etiketi ile bundle.js dosyamızı html içine
+dahil edebiliriz.
